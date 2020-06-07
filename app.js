@@ -1,6 +1,7 @@
 const game=()=> {
     let pScore=0;
     let cScore=0;
+    let person="";
     //start a game
     const startgame =()=>{
         const playbutton=document.querySelector(".game-name button");
@@ -10,6 +11,7 @@ const game=()=> {
 playbutton.addEventListener("click",()=>{
     intro.classList.add("fadeOut");
     match.classList.add("fadeIn");
+    person = prompt("Enter Name");
 });
     };
     
@@ -37,7 +39,7 @@ options.forEach(option=> {
 const computerChoice=computeroptions[computernum];
 
 setTimeout(() => {
-    compareHands(this.textContent,computerChoice);
+    compareHands(this.textContent,computerChoice,person);
  //Update Images
  playerHand.src = `./assessts/${this.textContent}.png`;
  computerHand.src = `./assessts/${computerChoice}.png`;
@@ -56,7 +58,7 @@ const updateScore=()=>{
     computerScore.textContent = cScore;
 };
 
-  const compareHands = (playerChoice, computerChoice) => {
+  const compareHands = (playerChoice, computerChoice,person) => {
     //Update Text
     const winner = document.querySelector(".winner");
     //Checking for a tie
@@ -67,7 +69,7 @@ const updateScore=()=>{
     //Check for Rock
     if (playerChoice === "rock") {
       if (computerChoice === "scissors") {
-        winner.textContent = "Player Wins";
+        winner.textContent = person+" Wins";
         pScore++;
         updateScore();
         return;
@@ -86,7 +88,7 @@ const updateScore=()=>{
         updateScore();
         return;
       } else {
-        winner.textContent = "Player Wins";
+        winner.textContent = person+" Wins";
         pScore++;
         updateScore();
         return;
@@ -100,7 +102,7 @@ const updateScore=()=>{
         updateScore();
         return;
       } else {
-        winner.textContent = "Player Wins";
+        winner.textContent = person+" Wins";
         pScore++;
         updateScore();
         return;
